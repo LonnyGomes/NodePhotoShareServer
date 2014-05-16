@@ -5,9 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//monog db connection
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/photoBooth');
+var db = mongoose.connection;
+
+//routes
 var routes = require('./routes/index');
 var ApiRouter = require('./routes/api');
-var api = new ApiRouter("asdf");
+var api = new ApiRouter(mongoose);
 
 var app = express();
 
@@ -57,5 +63,10 @@ app.use(function(err, req, res, next) {
     });
 });
 
+//handle DB stuff
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log("We connected!");
+});
 
 module.exports = app;
