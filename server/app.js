@@ -11,7 +11,6 @@ mongoose.connect('mongodb://localhost/photoBooth');
 var db = mongoose.connection;
 
 //routes
-var routes = require('./routes/index');
 var ApiRouter = require('./routes/api');
 var api = new ApiRouter(mongoose);
 
@@ -28,7 +27,6 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
 
 app.use('/api', api.router);
 
