@@ -47,6 +47,18 @@ router.get('/', function (req, res) {
     res.end("OK");
 });
 
+router.get('/photos', function (req, res) {
+    "use strict";
+
+    Photo.find(function (err, models) {
+        //handle photo results
+        if (err) {
+            sendResult(res, false, "Failed to retrieve list of photos!");
+        } else {
+            sendResult(res, true, JSON.stringify(models));
+        }
+    });
+});
 router.post('/upload', function (req, res) {
     "use strict";
 
