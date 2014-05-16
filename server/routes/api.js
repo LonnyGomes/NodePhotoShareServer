@@ -12,7 +12,8 @@ var express = require('express'),
         var schema = mg.Schema({
             size: Number,
             originalPath: String,
-            originalPhotoName: String
+            originalPhotoName: String,
+            timestamp: Date
         });
 
         return schema;
@@ -77,7 +78,8 @@ router.post('/upload', function (req, res) {
             photo = new Photo({
                 originalPath: fileObj.path,
                 originalPhotoName: fileObj.name,
-                size: fileObj.size
+                size: fileObj.size,
+                timestamp: Date.now()
             });
 
             photo.save(function (err, model) {
