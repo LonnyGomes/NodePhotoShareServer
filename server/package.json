@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "NodePhotoBothShare",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -15,5 +15,23 @@
     "morgan": "~1.0.0",
     "socket.io": "^0.9.16",
     "static-favicon": "~1.0.0"
-  }
+  },
+  "description": "Front facing photobooth server",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LonnyGomes/NodePhotoShareServer"
+  },
+  "keywords": [
+    "photobooth",
+    "photos",
+    "share"
+  ],
+  "author": "Lonny Gomes",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/LonnyGomes/NodePhotoShareServer/issues"
+  },
+  "homepage": "https://github.com/LonnyGomes/NodePhotoShareServer"
 }
