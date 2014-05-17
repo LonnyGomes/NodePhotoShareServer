@@ -62,9 +62,12 @@ app.use(function(err, req, res, next) {
 });
 
 //handle DB stuff
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', function (err) {
+    console.error("Had problems connecting to mongodb: " + err);
+    process.exit(1);
+});
 db.once('open', function callback () {
-  console.log("We connected!");
+  console.log("We connected to mongodb!");
 });
 
 module.exports = app;
