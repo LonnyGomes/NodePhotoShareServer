@@ -2,9 +2,9 @@ require([
   'jquery',
   'backbone',
   'views/root',
-  'routers/hello-world',
+  'routers/base-router',
   'helpers'
-], function ($, Backbone, RootView, HelloWorldRouter) {
+], function ($, Backbone, RootView, Router) {
   $(function() {
     Backbone.history.start({
       pushState: false,
@@ -19,7 +19,7 @@ require([
     RootView.getInstance(document.body);
 
     // Initialize your routers here
-    new HelloWorldRouter();
+    new Router();
 
     // This will trigger your routers to start
     Backbone.history.loadUrl();

@@ -1,2 +1,16 @@
+$headerClr: rgba(7, 114, 105, .9);
+$headerHeight: 80px;
 
+#header {
+    background-color: $headerClr;
+    height: $headerHeight;
+
+    img.logo {
+        height: $headerHeight - 5;
+    }
+
+    p {
+        text-align: right;
+    }
+}
 
