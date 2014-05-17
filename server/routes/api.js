@@ -3,10 +3,12 @@
 var express = require('express'),
     router = express.Router(),
     formidable = require('formidable'),
+    easyimg = require('easyimage'),
     util = require('util'),
     fs = require('fs'),
     path = require('path'),
     photosBasePath = 'public/photos',
+    thumbnailDimension = 100,
     db = null,
     photoSchema = null,
     Photo = null,
@@ -16,6 +18,8 @@ var express = require('express'),
         var schema = mg.Schema({
             size: Number,
             url: String,
+            thumbUrl: String,
+            thumbPath: String,
             originalPath: String,
             originalPhotoName: String,
             timestamp: Date
@@ -37,6 +41,7 @@ var express = require('express'),
         "use strict";
 
         var photo,
+            thumbPath,
             newPhotoPath;
 
         //create mongo model instance and persist to datastore
@@ -48,26 +53,47 @@ var express = require('express'),
 
         //TODO: fix this to not hardcode extensions
         newPhotoPath = path.resolve(path.join(photosBasePath, photo._id + ".jpg"));
+        thumbPath = path.resolve(path.join(photosBasePath, photo._id + "-thumb.jpg"));
         //lets move the photo into the uploads folder
 
         fs.rename(fileObj.path, newPhotoPath, function (err) {
             if (err) {
                 callback(err, "Could not move image to final destination");
             } else {
-
                 //store path info
                 photo.originalPath = newPhotoPath;
                 photo.url = path.join(path.basename(photosBasePath), path.basename(newPhotoPath));
 
-                photo.save(function (err, model) {
-                    if (callback) {
-                        if (err) {
-                            callback(true, "Failed while processing image!");
-                        } else {
-                            callback(false, "Photo upload was a success");
-                        }
+                //now create a thumbnail image
+                easyimg.thumbnail({
+                    width: thumbnailDimension,
+                    height: thumbnailDimension,
+                    src: newPhotoPath,
+                    dst: thumbPath,
+                    quality: 85
+                }, function (err, img) {
+
+                    if (err) {
+                        callback(true, "Failed to create thumbnail!");
+                    } else {
+                        //great, we have the thumbnail!
+                        //upadate the photo model to have the thumbnail
+                        photo.thumbPath = thumbPath;
+                        photo.thumbUrl = path.join(path.basename(photosBasePath), path.basename(thumbPath));
+
+                        //now lets save the model
+                        photo.save(function (err, model) {
+                            if (err) {
+                                callback(true, "Failed while processing image!");
+                            } else {
+                                callback(false, "Photo upload was a success");
+                            }
+                        });
+
                     }
                 });
+
+
             }
         });
     },
