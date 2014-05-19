@@ -25,7 +25,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(path.resolve(path.join(__dirname, '../public'))));
+app.use(express.static(path.resolve(path.join(__dirname, '../dist'))));
+app.use("/photos", express.static(path.resolve(path.join(__dirname, 'public/photos'))));
 
 
 app.use('/api', api.router);

@@ -17,7 +17,7 @@ var express = require('express'),
 
         var schema = mg.Schema({
             size: Number,
-            url: String,
+            photoUrl: String,
             thumbUrl: String,
             thumbPath: String,
             originalPath: String,
@@ -62,7 +62,7 @@ var express = require('express'),
             } else {
                 //store path info
                 photo.originalPath = newPhotoPath;
-                photo.url = path.join(path.basename(photosBasePath), path.basename(newPhotoPath));
+                photo.photoUrl = path.join(path.basename(photosBasePath), path.basename(newPhotoPath));
 
                 //now create a thumbnail image
                 easyimg.thumbnail({
@@ -140,6 +140,7 @@ router.get('/photos', function (req, res) {
         if (err) {
             sendResult(res, false, "Failed to retrieve list of photos!");
         } else {
+            //res.end(JSON.stringify(models));
             sendResult(res, true, JSON.stringify(models));
         }
     });
