@@ -1,9 +1,14 @@
+/*global define */
 define([
-  'view',
-  'hbs!templates/base-view'
-], function (View, template) {
-  return View.extend({
-    name: 'base-view',
-    template: template
-  });
+    'view',
+    'views/photo-container-view',
+    'hbs!templates/base-view'
+], function (View, PhotoContainerView, template) {
+    "use strict";
+
+    return View.extend({
+        name: 'base-view',
+        template: template,
+        photoContainer2: new PhotoContainerView()
+    });
 });
