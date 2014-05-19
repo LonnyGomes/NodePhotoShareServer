@@ -8,3 +8,4 @@ tmp
 coverage/
 .sass-cache
 dist
+server/public/
