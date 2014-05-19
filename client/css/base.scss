@@ -10,7 +10,11 @@ $headerHeight: 80px;
     }
 
     p {
-        text-align: right;
+        display: inline-block;
+        float: right;
+        margin: 10px;
+        font-size: 25px;
+        color: #ECEBEB;
     }
 }
 
