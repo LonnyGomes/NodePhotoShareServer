@@ -8,7 +8,7 @@ define([
     return View.extend({
         name: 'photo-container-view',
         template: template,
-        //id: "photoContainer",
+        id: "photoContainer",
         collection: new PhotosCollection()
     });
 });

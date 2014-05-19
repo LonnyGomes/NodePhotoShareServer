@@ -9,6 +9,6 @@ define([
     return View.extend({
         name: 'base-view',
         template: template,
-        photoContainer2: new PhotoContainerView()
+        photoContainer: new PhotoContainerView()
     });
 });
