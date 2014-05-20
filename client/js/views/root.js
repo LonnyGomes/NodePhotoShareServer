@@ -6,6 +6,7 @@ define([
   console.log("creating root view");
   var RootView = LayoutView.extend({
     name: 'root',
+    id: 'rootView',
     template: rootTemplate
   });
 
