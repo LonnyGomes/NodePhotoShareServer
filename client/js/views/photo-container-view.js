@@ -4,7 +4,8 @@ define([
     'collections/photos-collection',
     'jquery',
     'photoswipe',
-    'hbs!templates/photo-container-view'
+    'hbs!templates/photo-container-view',
+    'lazyload'
 ], function (View, PhotosCollection, $, photoswipe, template) {
     "use strict";
     return View.extend({
@@ -17,6 +18,8 @@ define([
                 var images = $('.thumbnail a');
 
                 if (images.length) {
+                    //set up lazy loading as well
+                    $("img.lazy").lazyload();
                     images.photoSwipe({ enableMouseWheel: false, enableKeyboard: false });
                 }
             }

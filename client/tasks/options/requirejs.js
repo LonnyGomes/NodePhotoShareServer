@@ -24,7 +24,8 @@ module.exports = {
         'text': '../bower_components/text/text',
         'hbs': '../bower_components/requirejs-hbs/hbs',
         'photoswipe': '../bower_components/photoswipe/release/3.0.3/code.photoswipe.jquery-3.0.3.min',
-        'klass': '../bower_components/photoswipe/release/3.0.3/lib/klass.min'
+        'klass': '../bower_components/photoswipe/release/3.0.3/lib/klass.min',
+        'lazyload': '../bower_components/jquery.lazyload/jquery.lazyload.min'
       },
       shim: {
         'handlebars': {
@@ -44,6 +45,9 @@ module.exports = {
         'photoswipe': {
            exports: 'Code',
            deps: ['jquery', 'klass']
+        },
+        'lazyload': {
+          deps: ['jquery']
         }
       }
     }
