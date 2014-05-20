@@ -1,2 +1,20 @@
+$headerClr: rgba(7, 114, 105, .9);
+$headerHeight: 80px;
 
+#header {
+    background-color: $headerClr;
+    height: $headerHeight;
+
+    img.logo {
+        height: $headerHeight - 5;
+    }
+
+    p {
+        display: inline-block;
+        float: right;
+        margin: 10px;
+        font-size: 25px;
+        color: #ECEBEB;
+    }
+}
 

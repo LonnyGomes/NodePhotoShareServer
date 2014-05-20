@@ -21,6 +21,16 @@ module.exports = {
       }
     ]
   },
+  images: {
+    files: [
+      { // copy js to tmp/ before compiling
+        expand: true,
+        cwd: grunt.config('paths.public'),
+        src: [ grunt.config('paths.images') + '/*' ],
+        dest: grunt.config('paths.dist')
+      }
+    ]
+  },
   styles: {
     files: [
       {

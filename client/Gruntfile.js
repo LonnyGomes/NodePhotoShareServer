@@ -52,6 +52,7 @@ module.exports = function(grunt) {
       },
       js: 'js',
       css: 'css',
+      images: 'img',
       templates: 'js/templates',
       views: 'js/views',
       models: 'js/models',
@@ -86,6 +87,18 @@ module.exports = function(grunt) {
     'watch'
   ]);
 
+  grunt.registerTask('deploy', [
+    'clean:production',
+    'build',
+    'styles:development',
+    'cssmin',
+    'copy:prepareBuild',
+    'copy:images',
+    'requirejs:production',
+    'connect:development',
+    'watch:deploy'
+  ]);
+
   /**
    * same as default `grunt` but also runs karma tests on file save
    *
@@ -111,6 +124,7 @@ module.exports = function(grunt) {
     'styles:development',
     'cssmin',
     'copy:prepareBuild',
+    'copy:images',
     'requirejs:production',
     'connect:production'
   ]);

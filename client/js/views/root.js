@@ -1,7 +1,9 @@
 define([
   'layout-view',
-  'hbs!templates/root'
+  'hbs!templates/root',
+  'routers/base-router'
 ], function(LayoutView, rootTemplate) {
+  console.log("creating root view");
   var RootView = LayoutView.extend({
     name: 'root',
     template: rootTemplate

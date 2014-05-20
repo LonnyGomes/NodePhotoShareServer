@@ -5,9 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+//monog db connection
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/photoBooth');
+var db = mongoose.connection;
+
+//routes
 var ApiRouter = require('./routes/api');
-var api = new ApiRouter("asdf");
+var api = new ApiRouter(mongoose);
 
 var app = express();
 
@@ -20,9 +25,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.resolve(path.join(__dirname, '../dist'))));
+app.use("/photos", express.static(path.resolve(path.join(__dirname, 'public/photos'))));
 
-app.use('/', routes);
 
 app.use('/api', api.router);
 
@@ -57,5 +62,13 @@ app.use(function(err, req, res, next) {
     });
 });
 
+//handle DB stuff
+db.on('error', function (err) {
+    console.error("Had problems connecting to mongodb: " + err);
+    process.exit(1);
+});
+db.once('open', function callback () {
+  console.log("We connected to mongodb!");
+});
 
 module.exports = app;

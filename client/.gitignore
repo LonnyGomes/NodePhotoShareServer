@@ -1,7 +1,11 @@
 node_modules
 bower_components
 public/css
+css/*.css.map
+css/*.css
 public/js
 tmp
 coverage/
 .sass-cache
+dist
+server/public/
