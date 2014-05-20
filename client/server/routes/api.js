@@ -135,7 +135,7 @@ router.get('/', function (req, res) {
 router.get('/photos', function (req, res) {
     "use strict";
 
-    Photo.find(function (err, models) {
+    Photo.find({}).sort({timestamp: -1}).exec(function (err, models) {
         //handle photo results
         if (err) {
             sendResult(res, false, "Failed to retrieve list of photos!");
