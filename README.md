@@ -34,9 +34,12 @@ npm install -g grunt
 Next clone the repository, cd into sub directory and enter the following
 
 ```
+cd client
 npm install
 bower install
-cd server
+cd bower_components/photoswipe
+./build.sh
+cd ../../server
 npm install
 ```
 
@@ -45,13 +48,16 @@ npm install
 Open up a dedicated terminal window and cd to the base directory of the cloned repository. You can then run the server with the following commands:
 
 ```
-cd server
+cd client/server
 ./bin/www
 ```
 
 The server should be accessable at _http://localhost:3000/_
 
 ## Building the client
+
+```
+```
 
 The client is built with requirejs and handlebars templates. To build, run grunt
 
