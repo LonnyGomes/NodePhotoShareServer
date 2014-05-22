@@ -23,9 +23,10 @@ module.exports = {
     files: [
       grunt.config('paths.js') + '/**/*.{js,coffee}',
       grunt.config('paths.templates') + '/**/*.{hbs,handlebars}',
+      grunt.config('paths.css') + '/**/*.{css,sass,scss,less,styl}',
       'require-config.js'
     ],
-    tasks: ['copy:prepareBuild', 'requirejs:production']
+    tasks: ['sass', 'copy:prepareBuild', 'requirejs:production']
   },
   other: { // images, fonts change? livereload browser
     files: [

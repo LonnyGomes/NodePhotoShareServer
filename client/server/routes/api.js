@@ -12,6 +12,7 @@ var express = require('express'),
     db = null,
     photoSchema = null,
     Photo = null,
+    delegate = null,
     initPhotoSchema = function (mg) {
         "use strict";
 
@@ -86,6 +87,9 @@ var express = require('express'),
                             if (err) {
                                 callback(true, "Failed while processing image!");
                             } else {
+                                if (delegate) {
+                                    delegate.onUploadSuccess(photo);
+                                }
                                 callback(false, "Photo upload was a success");
                             }
                         });
@@ -97,10 +101,11 @@ var express = require('express'),
             }
         });
     },
-    ApiRouter = function (dbRef) {
-
-
+    ApiRouter = function (dbRef, d) {
         var fullPhotoPath = path.resolve(photosBasePath);
+
+        //save reference to delegate
+        delegate = d;
 
         //save mongo reference
         db = dbRef;
@@ -135,7 +140,7 @@ router.get('/', function (req, res) {
 router.get('/photos', function (req, res) {
     "use strict";
 
-    Photo.find(function (err, models) {
+    Photo.find({}).sort({timestamp: -1}).exec(function (err, models) {
         //handle photo results
         if (err) {
             sendResult(res, false, "Failed to retrieve list of photos!");

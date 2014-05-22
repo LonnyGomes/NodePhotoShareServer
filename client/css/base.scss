@@ -1,5 +1,10 @@
+@import '../../bower_components/photoswipe/release/3.0.3/photoswipe.css';
 $headerClr: rgba(7, 114, 105, .9);
 $headerHeight: 80px;
+$bgColor: '#1a1a1a';
+
+body {
+}
 
 #header {
     background-color: $headerClr;
@@ -18,3 +23,8 @@ $headerHeight: 80px;
     }
 }
 
+#rootView {
+    height: 100%;
+    width: 100%;
+    background-color: $bgColor;
+}

@@ -45,7 +45,10 @@ require.config({
     'coffee-script': pathPrefix + 'bower_components/coffee-script/index',
     'cs': pathPrefix + 'bower_components/require-cs/cs',
     'text': pathPrefix + 'bower_components/text/text',
-    'hbs': pathPrefix + 'bower_components/requirejs-hbs/hbs'
+    'hbs': pathPrefix + 'bower_components/requirejs-hbs/hbs',
+    'photoswipe': pathPrefix + 'bower_components/photoswipe/release/3.0.3/code.photoswipe.jquery-3.0.3.min',
+    'klass': pathPrefix + 'bower_components/photoswipe/release/3.0.3/lib/klass.min',
+    'lazyload': pathPrefix + 'bower_components/jquery.lazyload/jquery.lazyload.min'
   },
   shim: {
     'handlebars': {
@@ -61,6 +64,13 @@ require.config({
     'thorax': {
       exports: 'Thorax',
       deps: ['handlebars', 'backbone']
+    },
+    'photoswipe': {
+       exports: 'Code',
+       deps: ['jquery', 'klass']
+    },
+    'lazyload': {
+        deps: ['jquery']
     }
   }
 });
