@@ -10,11 +10,23 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/photoBooth');
 var db = mongoose.connection;
 
+var app = express();
+
+var io = null;
+app.setSocket = function (socket) {
+    //socket should be set
+    io = socket;
+};
+
+//delegate methods used by api router
+app.onUploadSuccess = function (data) {
+    console.log(data.photoUrl);
+    io.sockets.emit('photo', data);
+}
+
 //routes
 var ApiRouter = require('./routes/api');
-var api = new ApiRouter(mongoose);
-
-var app = express();
+var api = new ApiRouter(mongoose, app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
