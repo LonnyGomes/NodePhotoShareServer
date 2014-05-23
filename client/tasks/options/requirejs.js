@@ -23,6 +23,7 @@ module.exports = {
         'cs': '../bower_components/require-cs/cs',
         'text': '../bower_components/text/text',
         'hbs': '../bower_components/requirejs-hbs/hbs',
+        'socket_io': '../bower_components/socket.io-client/dist/socket.io.min',
         'photoswipe': '../bower_components/photoswipe/release/3.0.3/code.photoswipe.jquery-3.0.3.min',
         'klass': '../bower_components/photoswipe/release/3.0.3/lib/klass.min',
         'lazyload': '../bower_components/jquery.lazyload/jquery.lazyload.min'
@@ -48,6 +49,9 @@ module.exports = {
         },
         'lazyload': {
           deps: ['jquery']
+        },
+        'socket_io': {
+            exports: 'io'
         }
       }
     }
