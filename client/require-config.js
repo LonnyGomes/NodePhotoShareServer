@@ -47,6 +47,7 @@ require.config({
     'text': pathPrefix + 'bower_components/text/text',
     'hbs': pathPrefix + 'bower_components/requirejs-hbs/hbs',
     'photoswipe': pathPrefix + 'bower_components/photoswipe/release/3.0.3/code.photoswipe.jquery-3.0.3.min',
+    'socket_io': pathPrefix + 'bower_components/socket.io-client/dist/socket.io.min',
     'klass': pathPrefix + 'bower_components/photoswipe/release/3.0.3/lib/klass.min',
     'lazyload': pathPrefix + 'bower_components/jquery.lazyload/jquery.lazyload.min'
   },
@@ -71,6 +72,9 @@ require.config({
     },
     'lazyload': {
         deps: ['jquery']
+    },
+    'socket_io': {
+        exports: 'io'
     }
   }
 });
